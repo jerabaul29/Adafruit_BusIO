@@ -12,33 +12,7 @@
  *    @param  dataMode The SPI mode to use, defaults to SPI_MODE0
  *    @param  theSPI The SPI bus to use, defaults to &theSPI
  */
-Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, uint32_t freq,
-                                       BitOrder dataOrder, uint8_t dataMode,
-                                       SPIClass *theSPI) {
-  _cs = cspin;
-  _sck = _mosi = _miso = -1;
-  _spi = theSPI;
-  _begun = false;
-  _spiSetting = new SPISettings(freq, dataOrder, dataMode);
-  _freq = freq;
-  _dataOrder = dataOrder;
-  _dataMode = dataMode;
-}
-
-/*!
- *    @brief  Create an SPI device with the given CS pin and settins
- *    @param  cspin The arduino pin number to use for chip select
- *    @param  sckpin The arduino pin number to use for SCK
- *    @param  misopin The arduino pin number to use for MISO, set to -1 if not
- * used
- *    @param  mosipin The arduino pin number to use for MOSI, set to -1 if not
- * used
- *    @param  freq The SPI clock frequency to use, defaults to 1MHz
- *    @param  dataOrder The SPI data order to use for bits within each byte,
- * defaults to SPI_BITORDER_MSBFIRST
- *    @param  dataMode The SPI mode to use, defaults to SPI_MODE0
- */
-Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, int8_t sckpin,
+ Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, int8_t sckpin,
                                        int8_t misopin, int8_t mosipin,
                                        uint32_t freq, BitOrder dataOrder,
                                        uint8_t dataMode) {
@@ -48,18 +22,18 @@ Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, int8_t sckpin,
   _mosi = mosipin;
 
 #ifdef BUSIO_USE_FAST_PINIO
-  csPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(cspin));
-  csPinMask = digitalPinToBitMask(cspin);
-  if (mosipin != -1) {
-    mosiPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(mosipin));
-    mosiPinMask = digitalPinToBitMask(mosipin);
-  }
-  if (misopin != -1) {
-    misoPort = (BusIO_PortReg *)portInputRegister(digitalPinToPort(misopin));
-    misoPinMask = digitalPinToBitMask(misopin);
-  }
-  clkPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(sckpin));
-  clkPinMask = digitalPinToBitMask(sckpin);
+  // csPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(cspin));
+  // csPinMask = digitalPinToBitMask(cspin);
+  // if (mosipin != -1) {
+    // mosiPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(mosipin));
+    // mosiPinMask = digitalPinToBitMask(mosipin);
+  // }
+  // if (misopin != -1) {
+    // misoPort = (BusIO_PortReg *)portInputRegister(digitalPinToPort(misopin));
+    // misoPinMask = digitalPinToBitMask(misopin);
+  // }
+  // clkPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(sckpin));
+  // clkPinMask = digitalPinToBitMask(sckpin);
 #endif
 
   _freq = freq;
