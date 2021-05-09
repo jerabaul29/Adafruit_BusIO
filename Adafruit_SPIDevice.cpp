@@ -38,37 +38,37 @@ Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, uint32_t freq,
  * defaults to SPI_BITORDER_MSBFIRST
  *    @param  dataMode The SPI mode to use, defaults to SPI_MODE0
  */
-Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, int8_t sckpin,
-                                       int8_t misopin, int8_t mosipin,
-                                       uint32_t freq, BitOrder dataOrder,
-                                       uint8_t dataMode) {
-  _cs = cspin;
-  _sck = sckpin;
-  _miso = misopin;
-  _mosi = mosipin;
-
-#ifdef BUSIO_USE_FAST_PINIO
-  csPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(cspin));
-  csPinMask = digitalPinToBitMask(cspin);
-  if (mosipin != -1) {
-    mosiPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(mosipin));
-    mosiPinMask = digitalPinToBitMask(mosipin);
-  }
-  if (misopin != -1) {
-    misoPort = (BusIO_PortReg *)portInputRegister(digitalPinToPort(misopin));
-    misoPinMask = digitalPinToBitMask(misopin);
-  }
-  clkPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(sckpin));
-  clkPinMask = digitalPinToBitMask(sckpin);
-#endif
-
-  _freq = freq;
-  _dataOrder = dataOrder;
-  _dataMode = dataMode;
-  _begun = false;
-  _spiSetting = new SPISettings(freq, dataOrder, dataMode);
-  _spi = NULL;
-}
+// Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, int8_t sckpin,
+//                                        int8_t misopin, int8_t mosipin,
+//                                        uint32_t freq, BitOrder dataOrder,
+//                                        uint8_t dataMode) {
+//   _cs = cspin;
+//   _sck = sckpin;
+//   _miso = misopin;
+//   _mosi = mosipin;
+// 
+// #ifdef BUSIO_USE_FAST_PINIO
+//   csPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(cspin));
+//   csPinMask = digitalPinToBitMask(cspin);
+//   if (mosipin != -1) {
+//     mosiPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(mosipin));
+//     mosiPinMask = digitalPinToBitMask(mosipin);
+//   }
+//   if (misopin != -1) {
+//     misoPort = (BusIO_PortReg *)portInputRegister(digitalPinToPort(misopin));
+//     misoPinMask = digitalPinToBitMask(misopin);
+//   }
+//   clkPort = (BusIO_PortReg *)portOutputRegister(digitalPinToPort(sckpin));
+//   clkPinMask = digitalPinToBitMask(sckpin);
+// #endif
+// 
+//   _freq = freq;
+//   _dataOrder = dataOrder;
+//   _dataMode = dataMode;
+//   _begun = false;
+//   _spiSetting = new SPISettings(freq, dataOrder, dataMode);
+//   _spi = NULL;
+// }
 
 /*!
  *    @brief  Release memory allocated in constructors

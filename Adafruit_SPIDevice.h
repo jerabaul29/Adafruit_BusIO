@@ -62,10 +62,10 @@ public:
                      BitOrder dataOrder = SPI_BITORDER_MSBFIRST,
                      uint8_t dataMode = SPI_MODE0, SPIClass *theSPI = &SPI);
 
-  Adafruit_SPIDevice(int8_t cspin, int8_t sck, int8_t miso, int8_t mosi,
-                     uint32_t freq = 1000000,
-                     BitOrder dataOrder = SPI_BITORDER_MSBFIRST,
-                     uint8_t dataMode = SPI_MODE0);
+  // Adafruit_SPIDevice(int8_t cspin, int8_t sck, int8_t miso, int8_t mosi,
+  //                    uint32_t freq = 1000000,
+  //                    BitOrder dataOrder = SPI_BITORDER_MSBFIRST,
+  //                    uint8_t dataMode = SPI_MODE0);
   ~Adafruit_SPIDevice();
 
   bool begin(void);
